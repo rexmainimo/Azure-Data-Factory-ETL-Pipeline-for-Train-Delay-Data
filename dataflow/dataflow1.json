@@ -1,0 +1,101 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Mydatasetcsv",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Mydatasetcsv",
+						"type": "DatasetReference"
+					},
+					"name": "mysink"
+				}
+			],
+			"transformations": [
+				{
+					"name": "filter1"
+				},
+				{
+					"name": "DerivedColumn"
+				},
+				{
+					"name": "aggregates"
+				}
+			],
+			"scriptLines": [
+				"parameters{",
+				"     parameter1 as string",
+				"}",
+				"source(output(",
+				"          DATDEP as string,",
+				"          TRAIN_NO as string,",
+				"          RELATION as string,",
+				"          TRAIN_SERV as string,",
+				"          PTCAR_NO as string,",
+				"          THOP1_COD as string,",
+				"          LINE_NO_DEP as string,",
+				"          REAL_TIME_ARR as string,",
+				"          REAL_TIME_DEP as string,",
+				"          PLANNED_TIME_ARR as string,",
+				"          PLANNED_TIME_DEP as string,",
+				"          DELAY_ARR as float,",
+				"          DELAY_DEP as float,",
+				"          CIRC_TYP as string,",
+				"          RELATION_DIRECTION as string,",
+				"          PTCAR_LG_NM_NL as string,",
+				"          LINE_NO_ARR as string,",
+				"          PLANNED_DATE_ARR as string,",
+				"          PLANNED_DATE_DEP as string,",
+				"          REAL_DATE_ARR as string,",
+				"          REAL_DATE_DEP as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 filter(!isNull(TRAIN_NO)) ~> filter1",
+				"filter1 derive(TOTAL_DELAY = DELAY_ARR + DELAY_DEP) ~> DerivedColumn",
+				"DerivedColumn aggregate(groupBy(TRAIN_NO,",
+				"          RELATION),",
+				"     TOTAL_DELAY_ARR = sum(DELAY_ARR),",
+				"          TOTAL_DELAY_DEP = sum(DELAY_DEP)) ~> aggregates",
+				"aggregates sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          DATDEP as string,",
+				"          TRAIN_NO as string,",
+				"          RELATION as string,",
+				"          TRAIN_SERV as string,",
+				"          PTCAR_NO as string,",
+				"          THOP1_COD as string,",
+				"          LINE_NO_DEP as string,",
+				"          REAL_TIME_ARR as string,",
+				"          REAL_TIME_DEP as string,",
+				"          PLANNED_TIME_ARR as string,",
+				"          PLANNED_TIME_DEP as string,",
+				"          DELAY_ARR as string,",
+				"          DELAY_DEP as string,",
+				"          CIRC_TYP as string,",
+				"          RELATION_DIRECTION as string,",
+				"          PTCAR_LG_NM_NL as string,",
+				"          LINE_NO_ARR as string,",
+				"          PLANNED_DATE_ARR as string,",
+				"          PLANNED_DATE_DEP as string,",
+				"          REAL_DATE_ARR as string,",
+				"          REAL_DATE_DEP as string",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> mysink"
+			]
+		}
+	}
+}

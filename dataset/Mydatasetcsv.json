@@ -1,0 +1,109 @@
+{
+	"name": "Mydatasetcsv",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "input-data"
+			},
+			"columnDelimiter": ",",
+			"rowDelimiter": "\n",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "DATDEP",
+				"type": "String"
+			},
+			{
+				"name": "TRAIN_NO",
+				"type": "String"
+			},
+			{
+				"name": "RELATION",
+				"type": "String"
+			},
+			{
+				"name": "TRAIN_SERV",
+				"type": "String"
+			},
+			{
+				"name": "PTCAR_NO",
+				"type": "String"
+			},
+			{
+				"name": "THOP1_COD",
+				"type": "String"
+			},
+			{
+				"name": "LINE_NO_DEP",
+				"type": "String"
+			},
+			{
+				"name": "REAL_TIME_ARR",
+				"type": "String"
+			},
+			{
+				"name": "REAL_TIME_DEP",
+				"type": "String"
+			},
+			{
+				"name": "PLANNED_TIME_ARR",
+				"type": "String"
+			},
+			{
+				"name": "PLANNED_TIME_DEP",
+				"type": "String"
+			},
+			{
+				"name": "DELAY_ARR",
+				"type": "String"
+			},
+			{
+				"name": "DELAY_DEP",
+				"type": "String"
+			},
+			{
+				"name": "CIRC_TYP",
+				"type": "String"
+			},
+			{
+				"name": "RELATION_DIRECTION",
+				"type": "String"
+			},
+			{
+				"name": "PTCAR_LG_NM_NL",
+				"type": "String"
+			},
+			{
+				"name": "LINE_NO_ARR",
+				"type": "String"
+			},
+			{
+				"name": "PLANNED_DATE_ARR",
+				"type": "String"
+			},
+			{
+				"name": "PLANNED_DATE_DEP",
+				"type": "String"
+			},
+			{
+				"name": "REAL_DATE_ARR",
+				"type": "String"
+			},
+			{
+				"name": "REAL_DATE_DEP",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

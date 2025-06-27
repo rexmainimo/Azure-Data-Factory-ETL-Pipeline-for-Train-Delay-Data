@@ -1,0 +1,9 @@
+{
+	"name": "rexdatafactory",
+	"location": "westeurope",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "4d628881-41c6-4cf1-b80f-68a8adbf89f0",
+		"tenantId": "77d33cc5-c9b4-4766-95c7-ed5b515e1cce"
+	}
+}
